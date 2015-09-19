@@ -100,6 +100,8 @@ pidfile = "/var/run/prosody/prosody.pid";
 ssl = {
 	key = "/var/lib/ssl/private/tyrfingr.key";
 	certificate = "/var/lib/ssl/certs/tyrfingr.pem";
+	ciphers = "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH EDH+aRSA !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
+	options = { "no_sslv2", "no_sslv3", "no_ticket", "no_compression", "cipher_server_preference" };
 }
 
 -- Force clients to use encrypted connections? This option will
@@ -148,7 +150,7 @@ authentication = "internal_plain"
 
 -- SQLite makes it easier to back up the server.
 storage = sql
-sql = { driver = "SQLite3" databaes = "/var/lib/prosody/prosody.sqlite" }
+sql = { driver = "SQLite3", database = "/var/lib/prosody/prosody.sqlite" }
 
 -- For the "sql" backend, you can uncomment *one* of the below to configure:
 --sql = { driver = "SQLite3", database = "prosody.sqlite" } -- Default. 'database' is the filename.
@@ -183,6 +185,8 @@ VirtualHost "tyrfingr.is"
 	ssl = {
 		key = "/var/lib/ssl/private/tyrfingr.key";
 		certificate = "/var/lib/ssl/certs/tyrfingr.pem";
+		options = { "no_sslv2", "no_sslv3", "no_ticket", "no_compression", "cipher_server_preference" };
+		ciphers = "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH EDH+aRSA !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
 	}
 
 VirtualHost "dropsonde.org"
@@ -190,6 +194,8 @@ VirtualHost "dropsonde.org"
 	ssl = {
 		key = "/var/lib/ssl/private/dropsonde.key";
 		certificate = "/var/lib/ssl/certs/dropsonde.pem";
+		options = { "no_sslv2", "no_sslv3", "no_ticket", "no_compression", "cipher_server_preference" };
+		ciphers = "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH EDH+aRSA !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
 	}
 
 ------ Components ------
