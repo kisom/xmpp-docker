@@ -1,0 +1,7 @@
+#!/bin/bash
+# Prosody needs these to be owned by prosody, but we only want prosody
+# to own them while the server is starting.
+(sleep 10; chown -R root /var/lib/ssl)&
+chown -R prosody /var/lib/prosody	&&
+chown -R prosody /var/lib/ssl		&&
+prosodyctl $@
